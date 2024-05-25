@@ -6,20 +6,24 @@ import Typography from '@mui/material/Typography';
 import Btn from './btn';
 import { useState } from 'react';
 
-
+const selectionObj = { option: 'PLEASE SELECT', selection: false }
 
 
 export default function CardBox() {
 
-const [selectedOption, setOption] = useState({ option: 'PLEASE SELECT', selection: false });
+const [selectedOption, setOption] = useState(selectionObj);
+
 
 
 const handleOptionChange = (event) => {
-  setOption({
-    option: event.target.value,
-    selection: true
-  });
-
+  // setOption({
+  //   option: event.target.value,
+  //   selection: true
+  // });
+  const temp = {...selectedOption}
+      temp["option"] = event.target.value
+      temp["selection"] = true
+      setOption(temp)
 };
 
 
