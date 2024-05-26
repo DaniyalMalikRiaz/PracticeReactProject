@@ -1,17 +1,12 @@
 
 import './App.css';
-import Btn from './components/btn';
-import CardBox from './components/card'
+
+import Form from './components/form'
 
 function App() {
   return (
     <div className="App">
-      
-        
-        <p>
-          Lets get started, Select an Account
-        </p>
-        <CardBox/>
+        <Form/>
     </div>
   );
 }

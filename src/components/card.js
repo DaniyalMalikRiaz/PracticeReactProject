@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Btn from './btn';
 import { useState } from 'react';
 
 const selectionObj = { option: 'PLEASE SELECT', selection: false }
@@ -16,10 +15,7 @@ const [selectedOption, setOption] = useState(selectionObj);
 
 
 const handleOptionChange = (event) => {
-  // setOption({
-  //   option: event.target.value,
-  //   selection: true
-  // });
+
   const temp = {...selectedOption}
       temp["option"] = event.target.value
       temp["selection"] = true
@@ -101,11 +97,13 @@ const handleOptionChange = (event) => {
         <Card variant="outlined">{card2}</Card> 
       </Box>
       
-      <Btn btnState = {{option : selectedOption.option, selection : selectedOption.selection}}/>
+
       </div>
      
     );
   }
+
+
 
 
 
