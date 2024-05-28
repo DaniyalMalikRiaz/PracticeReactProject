@@ -20,6 +20,7 @@ const handleOptionChange = (event) => {
       temp["option"] = event.target.value
       temp["selection"] = true
       setOption(temp)
+      props.productData(temp.option)
       props.setData({...props.inputData, product: temp.option})
 };
 
