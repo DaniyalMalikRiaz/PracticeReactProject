@@ -6,8 +6,11 @@ import PersonalInfo from './personalInfo';
 import ContactInfo from './contactInfo';
 import EmpInfo from './empInfo';
 import Summary from './summary';
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
 
 const inputObj = { 
+    product: "",
     name: "", 
     gender:"",
     motherName: "",
@@ -29,10 +32,27 @@ function Form(){
 
     const [page,setPage] = useState(0);
     const [inputData,setInputData] = useState(inputObj);
+    const [progress, setProgress] = React.useState(0);
+    
+
+
+    React.useEffect ( ()=> {
+        if(page === 0){
+            setProgress(0)
+        }else if(page === 1){
+            setProgress(25)
+        }else if(page === 2){
+            setProgress(50)
+        }else if(page === 3){
+            setProgress(75)
+        }else if(page === 4){
+            setProgress(100)
+        }
+    }, [page])
 
         const pageForm = () => {
         if(page === 0){
-            return <CardBox/>
+            return <CardBox inputData = {inputData} setData = {setInputData}/>
         }else if(page === 1){
         return <PersonalInfo inputData = {inputData} setData = {setInputData}/>
         }else if(page === 2){
@@ -40,19 +60,29 @@ function Form(){
         }else if(page === 3){
             return <EmpInfo inputData = {inputData} setData = {setInputData}/>
         }else if(page === 4){
-            return <Summary inputData = {inputData}/>
+            return <Summary inputData = {inputData} setPage = {setPage}/>
         }
         };
 
 
     return (
 <div className = "form">
-<div className = "progressBar"></div>
 
 <div className = "form-container">
 <div className = "header">
 <h1>{pageTitle[page]}</h1>
 </div>
+<div className = "progressBar">
+<Box component="section" sx={{ 
+    minWidth: 500,
+    padding: 2,
+    justifyContent: 'center',
+    }}>
+<LinearProgress variant="determinate" value={progress} />
+    </Box>
+
+</div>
+
 <div className = "body">{pageForm()}</div>
 <div className = "footer">
 <Button 

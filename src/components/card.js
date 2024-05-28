@@ -8,7 +8,7 @@ import { useState } from 'react';
 const selectionObj = { option: 'PLEASE SELECT', selection: false }
 
 
-export default function CardBox() {
+export default function CardBox(props) {
 
 const [selectedOption, setOption] = useState(selectionObj);
 
@@ -20,6 +20,7 @@ const handleOptionChange = (event) => {
       temp["option"] = event.target.value
       temp["selection"] = true
       setOption(temp)
+      props.setData({...props.inputData, product: temp.option})
 };
 
 
