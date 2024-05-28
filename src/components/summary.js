@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Box from '@mui/system/Box';
 import TextField from '@mui/material/TextField';
 import Fab from '@mui/material/Fab';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -8,12 +8,18 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 export default function Summary (props){
     
     
+
+
     
     return(
+      
+
+      
         <Box
         component="form"
         sx={{
           '& .MuiTextField-root': { m: 1, width: '25ch' },
+
         }}
         noValidate
         autoComplete="off"
@@ -27,7 +33,10 @@ export default function Summary (props){
             value = {props.inputData.product}
           /> 
           </div>
-        <div className='personalInfo'>
+
+
+          
+          <div className='personalInfo'>
           <TextField
             disabled
             id="name"
@@ -61,6 +70,8 @@ export default function Summary (props){
               
             </Fab>
         </div>
+    
+        
         <div className='contactInfo'>
           <TextField
             disabled
@@ -120,6 +131,7 @@ export default function Summary (props){
           
           </div>
           </Box>
+         
     )
 }
 

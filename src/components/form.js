@@ -37,6 +37,7 @@ function Form(){
     const [product,setProduct] = useState("");
     const [inputData,setInputData] = useState(inputObj);
     const [progress, setProgress] = React.useState(0);
+    const [btnState, setBtnState] = React.useState(true);
     
     function TopBar() {
         return (
@@ -71,6 +72,33 @@ function Form(){
         }
     }, [page])
 
+    React.useEffect ( ()=> {
+        
+        if(page === 1){
+            if(inputData.name !== "" && inputData.fatherName !== "" && inputData.motherName !== "" && inputData.gender !== ""){
+                setBtnState(false)
+            }
+        }else if (page === 0){
+            if(inputData.product !== "" ){
+                setBtnState(false)
+            }
+        }else if (page === 2){
+            if(inputData.email !== "" && inputData.mobileNumber !== "" && inputData.address !== ""){
+                setBtnState(false)   
+            }
+        }else if (page === 3){
+            if(inputData.empStatus !== "" && inputData.monthlyIncome !== "" && inputData.occupation !== ""){
+                setBtnState(false)
+            }
+        }
+
+        return () => {
+            setBtnState(true)
+        }
+
+       
+    }, [page,inputData])
+  
         const pageForm = () => {
         if(page === 0){
             return <CardBox inputData = {inputData} setData = {setInputData} productData = {setProduct}/>
@@ -86,6 +114,7 @@ function Form(){
         };
 
         const backBtn = () =>{
+
             if (page === 0) {
                 return null
             } else {
@@ -100,10 +129,25 @@ function Form(){
             }
         }
 
+        const nextBtn = () => {
+            
+            return <Button 
+                variant="contained"
+                disabled = {btnState}
+                onClick = {() => {
+                    setPage((cur) => cur + 1);
+                }}
+                sx={{ m:2}}
+                > 
+                {page === pageTitle.length - 1 ? "Submit": "Next"}
+            </Button>
+        }
+
     return (
 <div className = "form">
 <TopBar />
-<div className = "form-container">
+<div className = "form-container"
+>
 <div className = "header">
 <h1>{pageTitle[page]}</h1>
 </div>
@@ -121,15 +165,7 @@ function Form(){
 <div className = "body">{pageForm()}</div>
 <div className = "button">
     {backBtn()}
-    <Button 
-    variant="contained" 
-    disabled = {page === pageTitle.length - 1}
-    onClick = {() => {
-        setPage((cur) => cur + 1);
-    }}
-    sx={{ m:2}}
-    > {page === pageTitle.length - 1 ? "Submit": "Next"}
-    </Button>
+    {nextBtn()}
 </div>
 </div>
 
