@@ -10,19 +10,19 @@ const contactObj = [
 ]
 
 
-const MapObj = (props) => (
+const MapObj = () => (
   <div>
     {contactObj.map(item => (
-      <SetTextFields  objData = {props.objData} item={item} />
+      <SetTextFields  item={item} />
     ))}
   </div>
 );
 
-export default function ContactInfo (props){
+export default function ContactInfo (){
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}} noValidate autoComplete="off">
       <div>
-        <MapObj objData = {props} />
+        <MapObj />
       </div>
   </Box>
   )

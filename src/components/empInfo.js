@@ -10,10 +10,10 @@ const empObj = [
 
 
 
-const MapObj = (props) => (
+const MapObj = () => (
   <div>
     {empObj.map(item => (
-      <SetTextFields  objData = {props.objData} item={item} />
+      <SetTextFields  item={item} />
     ))}
   </div>
 );
@@ -23,7 +23,7 @@ export default function EmpInfo (props){
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}} noValidate autoComplete="off">
       <div>
-        <MapObj objData = {props} />
+        <MapObj/>
       </div>
   </Box>
   )

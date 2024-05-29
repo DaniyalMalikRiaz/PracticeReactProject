@@ -3,11 +3,13 @@ import Box from '@mui/system/Box';
 import TextField from '@mui/material/TextField';
 import Fab from '@mui/material/Fab';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import {DataContext} from './form';
 
 
 export default function Summary (props){
     
-    
+  const objData = React.useContext(DataContext);
+
 
 
     
@@ -30,7 +32,7 @@ export default function Summary (props){
             disabled
             id="product"
             label="Product"
-            value = {props.inputData.product}
+            value = {objData.inputData.product}
           /> 
           </div>
 
@@ -41,25 +43,25 @@ export default function Summary (props){
             disabled
             id="name"
             label="Full Name"
-            value = {props.inputData.name}
+            value = {objData.inputData.name}
           />
           <TextField
             disabled
             id="fatherName"
             label="Father Name"
-            value = {props.inputData.fatherName}
+            value = {objData.inputData.fatherName}
           />
           <TextField
             disabled
             id="motherName"
             label="Mother Name"
-            value = {props.inputData.motherName}
+            value = {objData.inputData.motherName}
           />
           <TextField
             disabled
             id="gender"
             label="Gender"
-            value = {props.inputData.gender}
+            value = {objData.inputData.gender}
           />
             <Fab size="small" color="primary" aria-label="add" variant='circular' sx={{ m: 1.5}}
             onClick = { () => {
@@ -77,19 +79,19 @@ export default function Summary (props){
             disabled
             id="email"
             label="Email"
-            value = {props.inputData.email}
+            value = {objData.inputData.email}
           />
           <TextField
             disabled
             id="mobileNumber"
             label="Mobile Number"
-            value = {props.inputData.mobileNumber}
+            value = {objData.inputData.mobileNumber}
           />
           <TextField
             disabled
             id="address"
             label="Address"
-            value = {props.inputData.address}
+            value = {objData.inputData.address}
           />
           <Fab size="small" color="primary" aria-label="add" variant='circular' sx={{ m: 1.5}}
           onClick = { () => {
@@ -105,19 +107,19 @@ export default function Summary (props){
             disabled
             id="monthlyIncome"
             label="Monthly Income"
-            value = {props.inputData.monthlyIncome}
+            value = {objData.inputData.monthlyIncome}
           />
           <TextField
             disabled
             id="occupation"
             label="Occupation"
-            value = {props.inputData.occupation}
+            value = {objData.inputData.occupation}
           />
           <TextField
             disabled
             id="empStatus"
             label="Employement Status"
-            value = {props.inputData.empStatus}
+            value = {objData.inputData.empStatus}
           />
            <Fab size="small" color="primary" aria-label="add" variant='circular' sx={{ m: 1.5}}
            onClick = { () => {

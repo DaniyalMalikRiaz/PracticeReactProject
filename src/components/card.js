@@ -4,12 +4,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import {DataContext} from './form';
 
 const selectionObj = { option: 'PLEASE SELECT', selection: false }
 
 
 export default function CardBox(props) {
 
+  const objData = React.useContext(DataContext);
 const [selectedOption, setOption] = useState(selectionObj);
 
 
@@ -21,7 +23,7 @@ const handleOptionChange = (event) => {
       temp["selection"] = true
       setOption(temp)
       props.productData(temp.option)
-      props.setData({...props.inputData, product: temp.option})
+      objData.setInputData({...objData.inputData, product: temp.option})
 };
 
 

@@ -1,18 +1,21 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
+import {DataContext} from '../form';
 
 
 
 export default function SetTextFields  ( props )  {
+
+  const objData = React.useContext(DataContext);
 
 
 return(
     <TextField
         id={props.item.id}
         label={props.item.label}
-        value = {props.objData.inputData[props.item.id]}
+        value = {objData.inputData[props.item.id]}
         onChange = {(event)=> {
-          props.objData.setData({...props.objData.inputData, [props.item.id]: event.target.value})
+          objData.setInputData({...objData.inputData, [props.item.id]: event.target.value})
         }}
       />
     )

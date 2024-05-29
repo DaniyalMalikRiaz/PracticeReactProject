@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import Button from '@mui/material/Button';
 import CardBox from './card';
 import PersonalInfo from './personalInfo';
@@ -30,6 +30,7 @@ const inputObj = {
 
  const pageTitle = ["Products","Personal Information","Contact Information","Employement Information","Summary"]
 
+ export const DataContext = createContext();
 
 function Form(){
 
@@ -38,6 +39,8 @@ function Form(){
     const [inputData,setInputData] = useState(inputObj);
     const [progress, setProgress] = React.useState(0);
     const [btnState, setBtnState] = React.useState(true);
+
+    
     
     function TopBar() {
         return (
@@ -101,15 +104,15 @@ function Form(){
   
         const pageForm = () => {
         if(page === 0){
-            return <CardBox inputData = {inputData} setData = {setInputData} productData = {setProduct}/>
+            return <CardBox productData = {setProduct}/>
         }else if(page === 1){
-        return <PersonalInfo inputData = {inputData} setData = {setInputData}/>
+        return <PersonalInfo />
         }else if(page === 2){
-            return <ContactInfo inputData = {inputData} setData = {setInputData}/>
+            return <ContactInfo />
         }else if(page === 3){
-            return <EmpInfo inputData = {inputData} setData = {setInputData}/>
+            return <EmpInfo />
         }else if(page === 4){
-            return <Summary inputData = {inputData} setPage = {setPage}/>
+            return <Summary setPage = {setPage}/>
         }
         };
 
@@ -144,32 +147,34 @@ function Form(){
         }
 
     return (
-<div className = "form">
-<TopBar />
-<div className = "form-container"
->
-<div className = "header">
-<h1>{pageTitle[page]}</h1>
-</div>
-<div className = "progressBar">
-<Box component="section" sx={{ 
-    minWidth: 500,
-    padding: 2,
-    justifyContent: 'center',
-    }}>
-<LinearProgress variant="determinate" value={progress} />
-    </Box>
+        <DataContext.Provider value = {{inputData, setInputData}}>
+            <div className = "form">
+            <TopBar />
+            <div className = "form-container"
+            >
+            <div className = "header">
+            <h1>{pageTitle[page]}</h1>
+            </div>
+            <div className = "progressBar">
+            <Box component="section" sx={{ 
+                minWidth: 500,
+                padding: 2,
+                justifyContent: 'center',
+                }}>
+            <LinearProgress variant="determinate" value={progress} />
+                </Box>
 
-</div>
+            </div>
 
-<div className = "body">{pageForm()}</div>
-<div className = "button">
-    {backBtn()}
-    {nextBtn()}
-</div>
-</div>
+            <div className = "body">{pageForm()}</div>
+            <div className = "button">
+                {backBtn()}
+                {nextBtn()}
+            </div>
+            </div>
 
-</div>
+            </div>
+        </DataContext.Provider>
     );
 }
 
