@@ -30,7 +30,6 @@ const inputObj = {
 
 
  const pageTitle = ["Products","Personal Information","Contact Information","Employement Information","Summary"]
-
  export const DataContext = createContext();
 
 function Form(){
