@@ -10,6 +10,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
+import axios from 'axios';
 
 
 const inputObj = { 
@@ -39,7 +40,18 @@ function Form(){
     const [inputData,setInputData] = useState(inputObj);
     const [progress, setProgress] = React.useState(0);
     const [btnState, setBtnState] = React.useState(true);
+    const [products, setProducts] = useState([]);
 
+    
+    React.useEffect ( ()=> {
+        axios.get('http://localhost:5000/api/products')
+          .then(response => {
+            setProducts(response.data);
+          })
+          .catch(error => {
+            console.error('Error fetching products:', error);
+          });
+      }, []);
     
     
     function TopBar() {
@@ -104,7 +116,7 @@ function Form(){
   
         const pageForm = () => {
         if(page === 0){
-            return <CardBox productData = {setProduct}/>
+            return <CardBox productData = {setProduct} allProducts = {products}/>
         }else if(page === 1){
         return <PersonalInfo />
         }else if(page === 2){
