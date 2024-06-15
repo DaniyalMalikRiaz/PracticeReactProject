@@ -43,7 +43,7 @@ function Form(){
 
     
     React.useEffect ( ()=> {
-        axios.get('http://localhost:5000/api/products')
+        axios.get('http://localhost:5000/api/getAllProducts')
           .then(response => {
             setProducts(response.data);
           })

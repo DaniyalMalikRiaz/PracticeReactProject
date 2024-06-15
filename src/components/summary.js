@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField';
 import Fab from '@mui/material/Fab';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import {DataContext} from './form';
+import axios from 'axios';
+import Button from '@mui/material/Button';
 
 
 export default function Summary (props){
@@ -11,7 +13,26 @@ export default function Summary (props){
   const objData = React.useContext(DataContext);
 
 
-
+  const SubmitButton = () => {
+            
+    return <Button 
+        variant="contained"
+        onClick = {() => {
+           
+                    axios.post('http://localhost:5000/api/saveData', objData.inputData)
+                .then(response => {
+                  console.log('Data successfully inserted:', response.data);
+                 
+                })
+                .catch(error => {
+                  console.error('There was an error inserting the data!', error);
+                });
+        }}
+        sx={{ m:2}}
+        > 
+        Open Account
+    </Button>
+}
     
     return(
       
@@ -129,12 +150,16 @@ export default function Summary (props){
               <EditNoteIcon />
             </Fab>
         </div>
-
+        <div className = "button">
+                {SubmitButton()}
+            </div>
           
           </div>
           </Box>
          
     )
+
+   
 }
 
 
